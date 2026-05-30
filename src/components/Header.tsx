@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { MenuIcon, XIcon, MessageCircleIcon, ScaleIcon } from 'lucide-react';
+import { MenuIcon, XIcon, MessageCircleIcon} from 'lucide-react';
 import { NAV_LINKS, WHATSAPP_LINK } from '../lib/constants';
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
