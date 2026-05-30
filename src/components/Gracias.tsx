@@ -1,7 +1,11 @@
 import React from 'react';
 import { CheckCircle2Icon, MessageCircleIcon } from 'lucide-react';
 
-export function Gracias() {
+interface GraciasProps {
+  onBackToForm: () => void;
+}
+
+export function Gracias({ onBackToForm }: GraciasProps) {
   return (
     <div className="flex min-h-[420px] flex-col items-center justify-center text-center">
       <span className="flex h-16 w-16 items-center justify-center rounded-full bg-petrol/10 text-petrol">
@@ -12,12 +16,13 @@ export function Gracias() {
         Recibimos su consulta y lo contactaremos a la brevedad. Si prefiere,
         también puede escribirnos directamente por WhatsApp.
       </p>
-      <a
-        href="#contacto"
+      <button
+        type="button"
+        onClick={onBackToForm}
         className="mt-6 inline-flex items-center gap-2 rounded-full bg-petrol px-6 py-3 text-sm font-600 text-white hover:bg-petrol-dark transition-colors">
         <MessageCircleIcon className="h-4 w-4" />
         Volver al formulario
-      </a>
+      </button>
     </div>
   );
 }

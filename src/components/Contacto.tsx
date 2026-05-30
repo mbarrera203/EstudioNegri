@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import {
   SendIcon,
   MessageCircleIcon,
@@ -49,6 +49,15 @@ const CONTACT_INFO = [
 
 export function Contacto() {
   const [submitted, setSubmitted] = useState(false);
+  const formContainerRef = useRef<HTMLDivElement | null>(null);
+
+  const handleBackToForm = () => {
+    setSubmitted(false);
+    requestAnimationFrame(() => {
+      formContainerRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
@@ -127,9 +136,9 @@ export function Contacto() {
           </SectionReveal>
 
           <SectionReveal delay={0.12} className="lg:col-span-7">
-            <div className="rounded-2xl bg-white p-7 sm:p-9 shadow-xl shadow-petrol/5 border border-gray-100">
+            <div ref={formContainerRef} className="rounded-2xl bg-white p-7 sm:p-9 shadow-xl shadow-petrol/5 border border-gray-100">
               {submitted ?
-                <Gracias /> :
+                <Gracias onBackToForm={handleBackToForm} /> :
 
               <form name="contacto" method="POST" data-netlify="true" netlify-honeypot="bot-field" onSubmit={handleSubmit} className="grid gap-5 sm:grid-cols-2">
                 <input type="hidden" name="form-name" value="contacto" />
