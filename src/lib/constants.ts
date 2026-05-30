@@ -19,3 +19,6 @@ export const NAV_LINKS = [
 { label: 'Sobre el estudio', href: '#sobre' },
 { label: 'Preguntas', href: '#faq' },
 { label: 'Contacto', href: '#contacto' }];
+
+// Optional Zapier webhook URL (set VITE_ZAPIER_HOOK in .env.local)
+export const ZAPIER_HOOK = import.meta.env.VITE_ZAPIER_HOOK ?? '';

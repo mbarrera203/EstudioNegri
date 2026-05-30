@@ -14,7 +14,8 @@ import {
   ADDRESS,
   PHONE_DISPLAY,
   EMAIL,
-  HOURS } from
+  HOURS,
+  ZAPIER_HOOK } from
 '../lib/constants';
 const CONSULTA_TYPES = [
 'Accidente de tránsito',
@@ -61,6 +62,20 @@ export function Contacto() {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: params.toString()
       });
+      // also optionally send to Zapier webhook if configured
+      try {
+        if (ZAPIER_HOOK) {
+          const payload = Object.fromEntries(formData as any);
+          await fetch(ZAPIER_HOOK, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+        }
+      } catch (err) {
+        console.error('Error sending to Zapier', err);
+      }
+
       setSubmitted(true);
     } catch (err) {
       console.error('Error sending form', err);
@@ -116,8 +131,9 @@ export function Contacto() {
               {submitted ?
                 <Gracias /> :
 
-              <form name="contacto" method="POST" data-netlify="true" onSubmit={handleSubmit} className="grid gap-5 sm:grid-cols-2">
+              <form name="contacto" method="POST" data-netlify="true" netlify-honeypot="bot-field" onSubmit={handleSubmit} className="grid gap-5 sm:grid-cols-2">
                 <input type="hidden" name="form-name" value="contacto" />
+                <p className="hidden"><label>Si sos un bot, dejá esto vacío: <input name="bot-field" /></label></p>
                   <Field
                   id="nombre"
                   label="Nombre"
