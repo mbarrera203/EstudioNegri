@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {
   SendIcon,
-  CheckCircle2Icon,
   MessageCircleIcon,
   MapPinIcon,
   PhoneIcon,
@@ -9,6 +8,7 @@ import {
   ClockIcon } from
 'lucide-react';
 import { SectionReveal } from './SectionReveal';
+import { Gracias } from './Gracias';
 import {
   WHATSAPP_LINK,
   ADDRESS,
@@ -48,9 +48,25 @@ const CONTACT_INFO = [
 
 export function Contacto() {
   const [submitted, setSubmitted] = useState(false);
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    // submit to Netlify Forms via AJAX so we can stay on the page
+    const params = new URLSearchParams();
+    formData.forEach((value, key) => params.append(key, String(value)));
+    try {
+      await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: params.toString()
+      });
+      setSubmitted(true);
+    } catch (err) {
+      console.error('Error sending form', err);
+      // keep UX simple: still show submitted state or you can show an error
+      setSubmitted(true);
+    }
   };
   return (
     <section id="contacto" className="w-full bg-cloud py-20 sm:py-24">
@@ -98,33 +114,10 @@ export function Contacto() {
           <SectionReveal delay={0.12} className="lg:col-span-7">
             <div className="rounded-2xl bg-white p-7 sm:p-9 shadow-xl shadow-petrol/5 border border-gray-100">
               {submitted ?
-              <div className="flex min-h-[420px] flex-col items-center justify-center text-center">
-                  <span className="flex h-16 w-16 items-center justify-center rounded-full bg-petrol/10 text-petrol">
-                    <CheckCircle2Icon className="h-8 w-8" />
-                  </span>
-                  <h3 className="mt-5 font-serif text-2xl font-600 text-petrol">
-                    ¡Gracias por contactarnos!
-                  </h3>
-                  <p className="mt-3 max-w-sm text-bluegray">
-                    Recibimos su consulta y lo contactaremos a la brevedad. Si
-                    prefiere, también puede escribirnos directamente por
-                    WhatsApp.
-                  </p>
-                  <a
-                  href={WHATSAPP_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-6 inline-flex items-center gap-2 rounded-full bg-petrol px-6 py-3 text-sm font-600 text-white hover:bg-petrol-dark transition-colors">
-                  
-                    <MessageCircleIcon className="h-4 w-4" />
-                    Escribir por WhatsApp
-                  </a>
-                </div> :
+                <Gracias /> :
 
-              <form
-                onSubmit={handleSubmit}
-                className="grid gap-5 sm:grid-cols-2">
-                
+              <form name="contacto" method="POST" data-netlify="true" onSubmit={handleSubmit} className="grid gap-5 sm:grid-cols-2">
+                <input type="hidden" name="form-name" value="contacto" />
                   <Field
                   id="nombre"
                   label="Nombre"
