@@ -6,7 +6,7 @@ import { Servicios } from '../components/Servicios';
 import { ConsultaSinCargo } from '../components/ConsultaSinCargo';
 import { PorQueElegirnos } from '../components/PorQueElegirnos';
 import { Proceso } from '../components/Proceso';
-import { Testimonios } from '../components/Testimonios';
+// import { Testimonios } from '../components/Testimonios';
 import { SobreAbogado } from '../components/SobreAbogado';
 import { FAQ } from '../components/FAQ';
 import { Contacto } from '../components/Contacto';
@@ -24,7 +24,7 @@ export function Landing() {
         <ConsultaSinCargo />
         <PorQueElegirnos />
         <Proceso />
-        <Testimonios />
+        {/* <Testimonios /> */}
         <SobreAbogado />
         <FAQ />
         <Contacto />
