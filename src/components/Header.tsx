@@ -20,7 +20,7 @@ export function Header() {
         <div className="flex h-16 sm:h-20 items-center justify-between">
           <a href="#inicio" className="flex items-center gap-2.5 group">
             <span className="flex items-center justify-center mr-3">
-              <img src="/LogoJP.png" alt="Estudio Negri" className="h-10 sm:h-12 md:h-14 w-auto object-contain" />
+              <img src="/LogoJPLimpio.png" alt="Estudio Negri" className="h-10 sm:h-12 md:h-14 w-auto object-contain" />
             </span>
             <span className="leading-tight">
               <span className="block font-serif text-base sm:text-lg font-600 text-petrol tracking-tight">
