@@ -34,11 +34,11 @@ export function SobreAbogado() {
             
             <div className="overflow-hidden rounded-full border-4 border-white shadow-lg shadow-petrol/10">
               <img
-                src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=400&q=80"
+                src="/Juampe.JPG"
                 alt="Retrato profesional del abogado del estudio jurídico"
                 className="h-32 w-32 sm:h-40 sm:w-40 object-cover"
-                loading="lazy" />
-              
+                loading="lazy"
+              />
             </div>
           </motion.div>
 
