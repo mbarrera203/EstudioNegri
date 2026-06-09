@@ -1,4 +1,3 @@
-import React, { lazy } from 'react';
 import { motion } from 'framer-motion';
 import { CheckIcon } from 'lucide-react';
 import { SectionReveal } from './SectionReveal';
