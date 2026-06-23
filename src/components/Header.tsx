@@ -22,11 +22,14 @@ export function Header() {
             <span className="flex items-center justify-center mr-3">
               <img src="/LogoJPLimpio.png" alt="Estudio Negri" className="h-10 sm:h-12 md:h-14 w-auto object-contain" />
             </span>
-            <span className="leading-tight">
-              <span className="block font-serif text-base sm:text-lg font-600 text-petrol tracking-tight">
+            <span className="leading-tight flex flex-col justify-center">
+              <span className="block font-serif text-xs sm:text-sm font-600 text-petrol tracking-tight whitespace-nowrap">
                 Estudio Jurídico
               </span>
-              <span className="block text-[10px] sm:text-xs uppercase tracking-[0.22em] text-bluegray">
+              <span className="block text-[10px] sm:text-xs font-semibold text-bluegray tracking-wide whitespace-nowrap">
+                Juan Pedro Negri &amp; Asociados
+              </span>
+              <span className="block text-[8px] sm:text-[9px] uppercase tracking-[0.22em] text-bluegray/75 whitespace-nowrap mt-0.5">
                 Mendoza · Argentina
               </span>
             </span>

@@ -53,14 +53,17 @@ export function Footer() {
         <div className="grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <div className="flex items-center gap-2.5">
-              <span className="flex h-9 w-9 items-center justify-center rounded-md bg-white/10 text-white">
+              <span className="flex h-9 w-9 items-center justify-center rounded-md bg-white/10 text-white shrink-0">
                 <ScaleIcon className="h-5 w-5" />
               </span>
-              <span className="leading-tight">
-                <span className="block font-serif text-lg font-600">
+              <span className="leading-tight flex flex-col justify-center">
+                <span className="block font-serif text-sm font-600">
                   Estudio Jurídico
                 </span>
-                <span className="block text-[11px] uppercase tracking-[0.22em] text-white/50">
+                <span className="block text-xs font-semibold text-white/90">
+                  Juan Pedro Negri &amp; Asociados
+                </span>
+                <span className="block text-[10px] uppercase tracking-[0.22em] text-white/50 mt-0.5">
                   Mendoza · Argentina
                 </span>
               </span>
