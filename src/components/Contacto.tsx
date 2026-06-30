@@ -85,9 +85,22 @@ export function Contacto() {
         console.error('Error sending to Zapier', err);
       }
 
+      // Track Google Ads Conversion
+      if (typeof window !== 'undefined' && (window as any).gtag) {
+        (window as any).gtag('event', 'conversion', {
+          'send_to': 'AW-18266822483/wIErCK3Mr8gcENOupoZE'
+        });
+      }
+
       setSubmitted(true);
     } catch (err) {
       console.error('Error sending form', err);
+      // Track Google Ads Conversion even if fetch/Zapier failed (to count lead attempt/success state)
+      if (typeof window !== 'undefined' && (window as any).gtag) {
+        (window as any).gtag('event', 'conversion', {
+          'send_to': 'AW-18266822483/wIErCK3Mr8gcENOupoZE'
+        });
+      }
       // keep UX simple: still show submitted state or you can show an error
       setSubmitted(true);
     }
